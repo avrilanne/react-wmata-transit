@@ -1,7 +1,7 @@
 import React from 'react';
-import MyMapComponent from './MyMapComponent'
+// import MyMapComponent from './MyMapComponent'
 
-class Trains extends React.Component {
+class Stations extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,8 +10,6 @@ class Trains extends React.Component {
       items: []
     };
   }
-
-  // Format data ( change bus to train positions )
 
   formatData=()=> {
     return this.state.items && this.state.items.map(val => {
@@ -27,7 +25,7 @@ class Trains extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://api.wmata.com/StationPrediction.svc/json/GetPrediction/A10?api_key=e13626d03d8e4c03ac07f95541b3091b")
+    fetch("https://api.wmata.com/StationPrediction.svc/json/GetPrediction/all?api_key=e13626d03d8e4c03ac07f95541b3091b")
       // .then(results => results)
       .then((response) => {
       return response.json();
@@ -56,4 +54,4 @@ class Trains extends React.Component {
   }
 }
 
-export default Trains;
+export default Stations;

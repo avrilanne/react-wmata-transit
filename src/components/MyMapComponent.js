@@ -3,7 +3,6 @@ import React from 'react';
 
 class MyMapComponent extends React.Component {
 
-
 // spread is ... take all the properies on this object and make it my props
   getMarkers=()=>{
     return this.props.data && this.props.data.map(val => {
@@ -15,9 +14,10 @@ class MyMapComponent extends React.Component {
     })
   }
 
+
   render(){
     return(
-      <Map google={this.props.google} zoom={14}>
+      <Map google={this.props.google} zoom={6}>
 
         {this.getMarkers()}
 

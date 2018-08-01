@@ -22,20 +22,34 @@ class Buses extends React.Component {
           }
         )
     })
+
+
   }
 
-  componentDidMount() {
+  fetchBuses=()=> {
     fetch("https://api.wmata.com/Bus.svc/json/jBusPositions?api_key=e13626d03d8e4c03ac07f95541b3091b")
-      .then((response) => {
-      return response.json();
-      })
-      .then((json) => {
-        this.setState({
-          items: json.BusPositions,
-          isLoaded: true
-        })
-      });
-  }
+          .then((response) => {
+          return response.json();
+          })
+          .then((json) => {
+            this.setState({
+              items: json.BusPositions,
+              isLoaded: true
+            })
+          });
+    }
+
+
+
+
+componentDidMount() {
+  this.fetchBuses()
+  this.timer = setInterval(() => this.fetchBuses(), 5000);
+}
+
+componentWillUnmount() {
+  this.timer = null;
+}
 
   render() {
     const { error, isLoaded, items } = this.state;
